@@ -1,0 +1,26 @@
+{
+  "name": "order_management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChiragMittal/Order_Management.git"
+  },
+  "author": "CHG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChiragMittal/Order_Management/issues"
+  },
+  "homepage": "https://github.com/ChiragMittal/Order_Management#readme",
+  "dependencies": {
+    "@angular/animations": "^6.1.3",
+    "@angular/cdk": "^6.4.5",
+    "@angular/material": "^6.4.5",
+    "angular": "^1.7.3",
+    "angular-route": "^1.7.3"
+  }
+}
