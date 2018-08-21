@@ -7,19 +7,24 @@
       rel="stylesheet">
 
     <link rel="stylesheet" href="public/css/customers.css">  
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   
+ 
     
 </head>
 
 <body ng-controller="customer">
 
     <div class="view-toggle">
-        <i ng-click="cardViewClick()" class="material-icons">view_module</i>
-        <i ng-click="listViewClick()" class="material-icons">view_headline</i>
+        <span class="glyphicon glyphicon-th" ng-click="cardViewClick()"></span>
+        <span class="glyphicon glyphicon-list" ng-click="listViewClick()"></span>
+        <input ng-model="searchText" placeholder="Search ......." type="text" class=" col-sm-offset-4">
     </div>
 
     <div class="card-view" ng-class="cardView ? 'show' : 'hide'">
 
-        <div class="cardContainer col-sm-6 col-md-4 col-lg-3" ng-repeat="customer in customers">
+        <div class="cardContainer col-sm-6 col-md-4 col-lg-3" ng-repeat="customer in customers| filter : searchText">
                 <div class="cardHeader"><a href="#" class="white">{{customer.name}}</div>
                     <div class="pull-left cardBodyLeft">
                             <a href="#" class="white"><img data-ng-src="public/img/{{customer.gender | lowercase}}.png" class="cardImage" /></a>
@@ -52,7 +57,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-ng-repeat="customer in customers"  class="repeat-animation">
+                                <tr data-ng-repeat="customer in customers| filter : searchText"  class="repeat-animation">
                                     <td><a href="#"><img data-ng-src="public/img/{{customer.gender | lowercase}}.png" class="cardImage" alt="Customer Image" /></a></td>
                                     <td><a href="#">{{customer.name}}</a></td>
                                     <td>{{customer.city}}, {{customer.state}}</td>

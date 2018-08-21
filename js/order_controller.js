@@ -1,8 +1,8 @@
 var app = angular.module('order', []);
 
-app.controller('customer', function($scope,$timeout){
+app.factory('Customers',function(){
 
-    $scope.customers = [
+    var Customers = [
         {
           name: "Fred Flintstone",
           city: "Bedrock",
@@ -66,7 +66,18 @@ app.controller('customer', function($scope,$timeout){
           gender: "Male",
           orderCount : 5
         }
-    ]; 
+    ];
+    
+   return Customers ;
+   
+});
+
+
+
+app.controller('customer', ['$scope','$timeout','Customers' , function($scope,$timeout,Customers){
+    
+    $scope.customers = Customers;
+    
 
     $scope.cardView = true;
 	$scope.listView = false;
@@ -79,20 +90,14 @@ app.controller('customer', function($scope,$timeout){
 			$scope.cardView = true;
 		}, 500);
 			$scope.listView = false;
-	}
+	};
 	$scope.listViewClick =  function() {
 			$scope.cardView = false;
     $timeout(function() {
 			$scope.listView = true;		
 		}, 500);
-    }
-    // $scope.viewMore = function() {
-	// 	$('.card-view-info').addClass('active');
-	// }
-	
-	// $scope.close = function() {
-	// 	$('.card-view-info').removeClass('active');
-	// }
-
-}
+    };
+   
+}]
 );
+
