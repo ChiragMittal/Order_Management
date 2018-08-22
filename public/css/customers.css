@@ -57,3 +57,12 @@ input[type=text]:focus {
     font-size : 26px;
     margin-left : 20px;
 }
+
+.footer {
+    position: absolute ;
+    bottom :0px;
+    margin : auto;
+    
+    
+}
+
