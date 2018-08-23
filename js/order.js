@@ -1,16 +1,25 @@
-var app = angular.module('order', ['ui.bootstrap']);
+var app = angular.module('order', ['ui.bootstrap','uiGmapgoogle-maps']);
 
 app.factory('Customers',function(){
 
     var Customers = [
         {
+          id:0,
           name: "Fred Flintstone",
           city: "Bedrock",
           state: "Washingstone",
           gender: "Male",
-          orderCount : 4
+          orderCount : 4,
+          coords: {
+            latitude: "45.5200",
+            longitude: "-122.6819"
+          },
+          window: {
+            title: "Portland, OR"
+          }
         },
         {
+          id:1,
           name: "John Smith",
           city: "Norfolk",
           state: "Virginia",
@@ -18,6 +27,7 @@ app.factory('Customers',function(){
           orderCount : 6
         },
         {
+          id:2,
           name: "Frank Livingston",
           city: "Pittsburgh",
           state: "Pennsylvania",
@@ -25,6 +35,7 @@ app.factory('Customers',function(){
           orderCount : 1
         },
         {
+          id:3,
           name: "Judy Green",
           city: "Cincinatti",
           state: "Ohio",
@@ -32,27 +43,52 @@ app.factory('Customers',function(){
           orderCount : 7
         },
         {
+          id:4,
           name: "Pat Thomas",
           city: "New York",
           state: "New York",
           gender: "Male",
-          orderCount : 9
+          orderCount : 9 ,
+          coords: {
+            latitude: "40.7903",
+            longitude: "-73.9597"
+          },
+          window : {
+            title: "Manhattan New York, NY"
+          }
         },
         {
+          id:5,
           name: "Betty Rubble",
           city: "Bedrock",
           state: "Washingstone",
           gender: "Female",
-          orderCount : 3
+          orderCount : 3 ,
+          coords: {
+            latitude: "41.7903",
+            longitude: "-73.9597"
+          },
+          window : {
+            title: "Manhattan New York, NY"
+          }
         },
         {
+          id:6,
           name: "Martha Smith",
           city: "Norfolk",
           state: "Virginia",
           gender: "Female",
-          orderCount : 10
+          orderCount : 10 ,
+          coords: {
+            latitude: "42.7903",
+            longitude: "-73.9597"
+          },
+          window : {
+            title: "Manhattan New York, NY"
+          }
         },
         {
+          id:7,
           name: "Liz Livingston",
           city: "Pittsburgh",
           state: "Pennsylvania",
@@ -60,6 +96,7 @@ app.factory('Customers',function(){
           orderCount : 8
         },
         {
+          id:8,
           name: "Howard McGovern",
           city: "Denver",
           state: "Colorado",
@@ -78,11 +115,17 @@ app.controller('customer', ['$scope','$timeout','Customers' , function($scope,$t
     
     $scope.customers = Customers;
 
-    console.log($scope.customers.length)
+    $scope.map = { 
+      center: { latitude: 39.8282, longitude: -98.5795 }, 
+      zoom: 4 
+    };
+
+    console.log($scope.customers)
     
 
     $scope.cardView = true;
-	$scope.listView = false;
+    $scope.listView = false;
+    $scope.mapView = false;
 	
 	
 	
@@ -91,14 +134,25 @@ app.controller('customer', ['$scope','$timeout','Customers' , function($scope,$t
 		$timeout(function() {
 			$scope.cardView = true;
 		}, 500);
-			$scope.listView = false;
+      $scope.listView = false;
+      $scope.mapView = false;
 	};
 	$scope.listViewClick =  function() {
-			$scope.cardView = false;
+      $scope.cardView = false;
+      $scope.mapView = false;
     $timeout(function() {
 			$scope.listView = true;		
 		}, 500);
     };
+
+  $scope.mapViewClick = function(){
+      $scope.cardView = false;
+      $scope.listView = false;
+    $timeout(function(){
+      $scope.mapView = true;
+    },500);
+
+  } ; 
 
     $scope.viewby = 10;
     $scope.totalItems = $scope.customers.length;
@@ -118,6 +172,8 @@ app.controller('customer', ['$scope','$timeout','Customers' , function($scope,$t
       $scope.itemsPerPage = num;
       $scope.currentPage = 1;
     }
+
+   
    
 }]
 );

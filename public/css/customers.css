@@ -50,7 +50,7 @@ input[type=text] {
 }
 
 input[type=text]:focus {
-    width: 40%;
+    width: 30%;
 }
 
 .glyphicon{
@@ -65,4 +65,9 @@ input[type=text]:focus {
     
     
 }
+
+.angular-google-map-container {
+    height: 50vh;
+  }
+  
 

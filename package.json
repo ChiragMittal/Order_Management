@@ -21,6 +21,9 @@
     "@angular/cdk": "^6.4.5",
     "@angular/material": "^6.4.5",
     "angular": "^1.7.3",
-    "angular-route": "^1.7.3"
+    "angular-google-maps": "^2.4.1",
+    "angular-route": "^1.7.3",
+    "loadash": "^1.0.0",
+    "lodash": "^4.17.10"
   }
 }

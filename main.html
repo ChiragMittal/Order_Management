@@ -19,7 +19,8 @@
     <div class="view-toggle">
         <span class="glyphicon glyphicon-th" ng-click="cardViewClick()"> CardView</span>
         <span class="glyphicon glyphicon-list" ng-click="listViewClick()"> ListView</span>
-        <input ng-model="searchText" placeholder="Search ......." type="text" class=" col-sm-offset-4">
+        <span class="glyphicon glyphicon-plus" ng-click="mapViewClick()"> MapView</span>
+        <input ng-model="searchText" placeholder="Search ......." type="text" class=" col-sm-offset-2">
     </div>
 
     <div class="card-view" ng-class="cardView ? 'show' : 'hide'">
@@ -78,6 +79,21 @@
             </div>
         
     </div>
+
+     <div id="map" class="map-view" ng-class="mapView ? 'show' : 'hide'">
+            <ui-gmap-google-map 
+    center='map.center' 
+    zoom='map.zoom' aria-label="Google map">
+    
+            <ui-gmap-marker ng-repeat="customer in customers.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))| filter : searchText"
+            coords="customer.coords" options="customer.options" events="customer.events" idkey="customer.id">
+            <ui-gmap-window>
+                <div>{{customer.window.title}}</div>
+            </ui-gmap-window>
+            </ui-gmap-marker>
+            
+        </ui-gmap-google-map>
+    </div>
     
     <div class="footer row">
 
@@ -93,7 +109,12 @@
         <script src="public/js/jquery.min.js"></script>
         <script src="public/js/bootstrap.min.js"></script>
         <script  src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script> -->
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/angular-google-maps/2.0.11/angular-google-maps.js'></script>
+<script src='http://maps.googleapis.com/maps/api/js?sensor=false'></script>
+
+
+
 </body>
 
 </html>
