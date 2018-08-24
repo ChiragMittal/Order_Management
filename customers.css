@@ -1,0 +1,73 @@
+.cardHeader {
+    background-color:#027FF4;
+    font-size:14pt;
+    color:white;
+    padding:5px;
+    width:100%;
+}
+.cardImage {
+    height:50px;width:50px;margin-top:10px;
+}
+.white {
+    color: white;
+}
+
+.white:hover{
+    color: white;
+}
+.cardBody {
+    padding-left: 5px;
+}
+
+.cardBodyLeft {
+    margin-top: -5px;
+}
+
+.cardBodyRight {
+    margin-left: 20px;
+    margin-top: 2px;
+}
+/* .cardBodyContent {
+    width: 100px;
+} */
+.cardContainer {
+    margin-top: 55px;
+    padding: 12px 20px 12px 40px;
+}
+
+input[type=text] {
+    width: 150px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white; 
+    background-repeat: no-repeat;
+    padding: 12px 10px 12px 10px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    
+}
+
+input[type=text]:focus {
+    width: 30%;
+}
+
+.glyphicon{
+    font-size : 26px;
+    margin-left : 20px;
+}
+
+.footer {
+    position: absolute ;
+    bottom :0px;
+    margin : auto;
+    
+    
+}
+
+.angular-google-map-container {
+    height: 50vh;
+  }
+  
+
