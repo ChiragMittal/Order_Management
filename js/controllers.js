@@ -5,11 +5,13 @@ var customer = angular.module("customer", []);
 customer.controller("customer",
 	function($scope, $http,$timeout)
 		{    
-			$http.get('js/data.json').success (function(data){
-				$scope.customers = data;
-
-				 $scope.totalItems = $scope.customers.length;
-			});
+		$http.get('http://localhost:4000/').success (function(data){
+					$scope.customers = data;
+					// $scope.whichCustomer = $routeParams.id;
+					// console.log($scope.whichCustomer)
+					$scope.totalItems = $scope.customers.length;
+					console.log($scope.customers)
+				}); 
 
 			$scope.cardView = true;
 		    $scope.listView = false;
@@ -62,8 +64,12 @@ customer.controller("customer",
     $scope.setItemsPerPage = function(num) {
       $scope.itemsPerPage = num;
       $scope.currentPage = 1;
-    }
 		}
+		
+		
+		 }
+
+		
 
 
 );
@@ -71,10 +77,14 @@ customer.controller("customer",
 customer.controller("single_customer", 
 	 function($scope, $http, $routeParams)
 		{    
-			$http.get('js/data.json').success (function(data){
-				$scope.guitarVariable = data;
-				$scope.whichGuitar = $routeParams.id;
-				console.log($scope.whichGuitar)
+			$http.get('http://localhost:4000/customer/1').success (function(data){
+				$scope.whichCustomer = $routeParams.id;
+				console.log($scope.whichCustomer)
+				//$scope.whichCustomer = $routeParams.id;
+				$scope.customer = data;
+				
+				console.log($scope.customer[$scope.whichCustomer])
+
 			}); 
 		}
 );

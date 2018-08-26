@@ -1,9 +1,21 @@
 
-<div class="details" ng-model="guitarVariable">
-		
-			<div>
-				<h2> {{guitarVariable[whichGuitar].name | lowercase }}</h2>
-				
-				<a href="index.html" class="link">&laquo; Go back to Search</a>
+<div class="details" ng-model="customers">
+		<span class="glyphicon glyphicon-user"> CustomerInformation</span>
+			<div style="margin-top: 30px;">
+					<!-- <a  class="white"><img style="height:200px;width:200px;float:left;" data-ng-src="public/img/{{customer[whichCustomer].gender | lowercase}}.png"  /></a> -->
+				 <p style="font-size: 20px;"> {{customer[whichCustomer].name}}</p>		
+					<!-- <div class="col-sm-offset-3">
+							<p style="font-size: 20px;"> {{customer[whichCustomer].name  }}</p>
+							<p style="font-size: 20px;">{{customer[whichCustomer].city}}, {{customer[whichCustomer].state}}</p>
+							<a href="" style="font-size: 20px;" class="btn-link">
+                                    {{ customer[whichCustomer].orderCount }}
+                                    <span data-ng-pluralize count="customer[whichCustomer].orderCount"
+                                          when="{'1': 'Order','other': 'Orders'}">
+                                    </span>
+								</a>
+								
+								
+
+					</div>				 -->
 			</div>
 </div>

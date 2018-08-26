@@ -4,7 +4,7 @@ var app = angular.module('order', ['ngRoute','customer','ui.bootstrap','uiGmapgo
 
 app.config( function($routeProvider) {
   $routeProvider.
-  when('/customer', {
+  when('/', {
     templateUrl: 'partials/list.html',
     controller: 'customer'
   }).
@@ -13,6 +13,6 @@ app.config( function($routeProvider) {
     controller: 'single_customer'
   }).
   otherwise({
-    redirectTo: '/customer'
+    redirectTo: '/'
   });
 });
