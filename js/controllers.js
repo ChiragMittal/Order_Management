@@ -83,7 +83,7 @@ customer.controller("single_customer",
 				
 				console.log($scope.customer[$scope.whichCustomer])
 
-			}).then(function(err){
+			}).catch(function(err){
 					console.log(err);
 			}); 
 
