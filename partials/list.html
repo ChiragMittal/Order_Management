@@ -11,14 +11,14 @@
     <div class="card-view" ng-class="cardView ? 'show' : 'hide'">
 
         <div class="cardContainer col-sm-6 col-md-4 col-lg-3" ng-repeat="customer in customers.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))| filter : searchText">
-                <div class="cardHeader"><a href="#" class="white">{{customer.name}}</div>
+                <div class="cardHeader"><a href="#/customer/{{customer.id}}" class="white">{{customer.name}}</div>
                     <div class="pull-left cardBodyLeft">
                             <a href="#" class="white"><img data-ng-src="public/img/{{customer.gender | lowercase}}.png" class="cardImage" /></a>
                     </div>
                     <div class="pull-left cardBodyRight">
                             <div class="cardBodyContent">{{customer.city}}, {{customer.state}}</div>
                             <div>
-                                <a href="#" class="btn-link">
+                                <a href="#/customer/order_list/{{customer.id}}" class="btn-link">
                                     {{ customer.orderCount }}
                                     <span data-ng-pluralize count="customer.orderCount"
                                           when="{'1': 'Order','other': 'Orders'}">
@@ -47,10 +47,10 @@
                             <tbody>
                                 <tr data-ng-repeat="customer in customers.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))| filter : searchText"  class="repeat-animation">
                                     <td><a href="#"><img data-ng-src="public/img/{{customer.gender | lowercase}}.png" class="cardImage" alt="Customer Image" /></a></td>
-                                    <td><a href="#/customer/{{customers.indexOf(customer)}}">{{customer.name}}</a></td>
+                                    <td><a href="#/customer/{{customer.id}}">{{customer.name}}</a></td>
                                     <td>{{customer.city}}, {{customer.state}}</td>
                                     <td>
-                                        <a href="#" class="btn-link">
+                                        <a href="#/customer/order_list/{{customer.id}}" class="btn-link">
                                             {{ customer.orderCount }}
                                             <span data-ng-pluralize count="customer.orderCount"
                                                   when="{'1': 'Order','other': 'Orders'}">

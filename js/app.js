@@ -12,6 +12,14 @@ app.config( function($routeProvider) {
     templateUrl: 'partials/details.html',
     controller: 'single_customer'
   }).
+  when('/customer/order_list/:id', {
+    templateUrl: 'partials/order.html',
+    controller: 'order'
+  }).
+  // when('/new_info', {
+  //   templateUrl: 'partials/new.html',
+  //   controller: 'new_info'
+  // }).
   otherwise({
     redirectTo: '/'
   });

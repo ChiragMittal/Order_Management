@@ -1,10 +1,13 @@
 var express    = require('express');
 var morgan     = require("morgan");
 var app        = express();
-var data = require( "./js/data.json");
+// var data = require( "./js/data.json");
 var bodyParser = require('body-parser');
 var MongoClient = require("mongodb").MongoClient;
 var mongoose = require("mongoose");
+var shortid = require("shortid");
+
+// console.log(shortid.generate('1234567890'));
 
 var Customers = mongoose.model('Customers',{
     id: {type:Number , required:true} ,
@@ -19,14 +22,22 @@ var Customers = mongoose.model('Customers',{
     } ,
     window : {
 		title : String
-	}
+    },
+    orders :[
+        {
+            o_id : Number ,
+            o_name : String ,
+            quantity : Number ,
+            price : Number 
+        }
+    ]
 });
 
 app.use(function(req,res,next){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     next();
-})
+});
 
 
 var port = process.env.PORT || 4000;
@@ -35,11 +46,11 @@ app.use(morgan("dev"));
 // app.use(express.static("./"));
 app.use(bodyParser.json())
 
-function getInfo(){
-    Customers.find({}).exec(function(err,result){
+// function getInfo(){
+//     Customers.find({}).exec(function(err,result){
         
-    })
-}
+//     })
+// }
 
 mongoose.connect("mongodb://localhost:27017/customers",(err,db) => {
     if(!err){
@@ -48,6 +59,28 @@ mongoose.connect("mongodb://localhost:27017/customers",(err,db) => {
     
     }
 });
+
+// app.post('http://localhost:4000/new_info',(req,res,next)=>{
+
+// var user = new Customers();
+//         user.id = shortid.generate('1234567890');
+//         user.name = req.body.name;
+//         user.city = req.body.city;
+//         user.state = req.body.state;
+//         user.gender = req.body.gender;
+
+//         console.log(user.name)
+
+//         user.save((err, doc) => {
+//             if (!err)
+//                 res.status(200).send(doc);
+//             else {
+//                 res.status(500).send(err)
+//             }
+
+// })
+
+// });
 
 app.get("/",(req,res) =>{
     
@@ -58,9 +91,25 @@ app.get("/",(req,res) =>{
     })
 
 
-})
+});
 
 app.get("/customer/:id", (req, res) => {
+  
+    var user = Number(req.params.id);
+    console.log(user)
+
+    Customers.find({id:user}, (err, items) => {
+        if (err) res.status(500).send(err)
+    
+        res.status(200).send(items);
+        console.log(items)
+      });
+    // console.log(Customers.find({id:user}));
+    // res.send(Customers.find({id:user}));
+
+   });
+
+   app.get("/customer/order_list/:id", (req, res) => {
   
     console.log(req.params.id);
     var user = Number(req.params.id);
@@ -70,6 +119,7 @@ app.get("/customer/:id", (req, res) => {
         if (err) res.status(500).send(err)
     
         res.status(200).json(items);
+        console.log(items)
       });
     // console.log(Customers.find({id:user}));
     // res.send(Customers.find({id:user}));
