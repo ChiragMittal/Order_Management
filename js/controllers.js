@@ -5,19 +5,19 @@ var customer = angular.module("customer", []);
 customer.controller("customer",
 	function($scope, $http,$timeout)
 		{    
-			// $http.get('js/data.json').success (function(data){
-			// 	$scope.customers = data;
+			$http.get('js/data.json').success (function(data){
+				$scope.customers = data;
 
 				 
-			// });
+			});
 
-		$http.get('http://localhost:4000/').success (function(data){
-					$scope.customers = data;
-					// $scope.whichCustomer = $routeParams.id;
-					// console.log($scope.whichCustomer)
-				$scope.totalItems = $scope.customers.length;
-					console.log($scope.customers)
-				}); 
+		// $http.get('http://localhost:4000/').success (function(data){
+		// 			$scope.customers = data;
+		// 			// $scope.whichCustomer = $routeParams.id;
+		// 			// console.log($scope.whichCustomer)
+		// 		$scope.totalItems = $scope.customers.length;
+		// 			console.log($scope.customers)
+		// 		}); 
 
 			$scope.cardView = true;
 		    $scope.listView = false;
@@ -77,31 +77,37 @@ customer.controller("customer",
 customer.controller("single_customer", 
 	 function($scope, $http, $routeParams)
 		{    
-			$http.get('http://localhost:4000/customer/:id').then (function(data){
-				$scope.whichCustomer = $routeParams.id;
-				$scope.customer = data;
-				
-				console.log($scope.customer[$scope.whichCustomer])
-
-			}).catch(function(err){
-					console.log(err);
-			}); 
-
-			// $http.get('js/data.json').success (function(data){
+			// $http.get('http://localhost:4000/customer/:id').then (function(data){
+			// 	// $scope.whichCustomer = $routeParams.id;
 			// 	$scope.customer = data;
+				
+			// 	console.log($scope.customer)
 
-			// 	$scope.whichCustomer = $routeParams.id;
-			// 	console.log($scope.customer[$scope.whichCustomer].orders)
+			// }).catch(function(err){
+			// 		console.log(err);
+			// }); 
+
+			$http.get('js/data.json').success (function(data){
+				$scope.customer = data;
+				$scope.whichCustomer = $routeParams.id;
+					 $scope.result = $scope.customer.find( user => user.id ===  $scope.whichCustomer);
+
+					console.log($scope.result) 
+
+				
+
+				console.log($scope.whichCustomer)
+				
 
 				 
-			// });
+			});
 
 		}
 );
 
-// customer.controller("order", 
-// 	 function($scope, $http, $routeParams)
-// 		{    
+customer.controller("order", 
+	 function($scope, $http, $routeParams)
+		{    
 			// $http.get('http://localhost:4000/customer/order_list/:id').success (function(data){
 			// 	$scope.whichCustomer = $routeParams.id;
 			// 	$scope.customer = data;
@@ -110,24 +116,25 @@ customer.controller("single_customer",
 
 			// }); 
 
-			// $http.get('js/data.json').success (function(data){
-			// 	$scope.customer = data;
-			// 	$scope.whichCustomer = $routeParams.id;
-				
-			// 	$scope.total = $scope.customer[$scope.whichCustomer].orders;
+			$http.get('js/data.json').success (function(data){
+				$scope.customer = data;
+				$scope.whichCustomer = $routeParams.id;
+				$scope.result = $scope.customer.find( user => user.id ===  $scope.whichCustomer);
+				console.log($scope.whichCustomer)
+				 $scope.total = $scope.result.orders;
 
 
-			// 	$scope.sum = $scope.total.reduce(function(prevVal, elem) {
-			// 		return prevVal + (elem.price*elem.quantity);
-			// }, 0);
+				$scope.sum = $scope.total.reduce(function(prevVal, elem) {
+					return prevVal + (elem.price*elem.quantity);
+			}, 0);
 
-			// console.log($scope.sum);
+			console.log($scope.sum);
 
 				 
-			// });
+			});
 
-// 		}
-// );
+		}
+);
 
 // customer.controller("new_info", 
 // 	 function($scope, $http, $routeParams)

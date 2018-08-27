@@ -10,7 +10,7 @@ var shortid = require("shortid");
 // console.log(shortid.generate('1234567890'));
 
 var Customers = mongoose.model('Customers',{
-    id: {type:Number , required:true} ,
+    id: {type:String , required:true} ,
     name: String ,
     city : String ,
     state : String ,
@@ -95,7 +95,7 @@ app.get("/",(req,res) =>{
 
 app.get("/customer/:id", (req, res) => {
   
-    var user = Number(req.params.id);
+    var user = String(req.params.id);
     console.log(user)
 
     Customers.find({id:user}, (err, items) => {
@@ -112,7 +112,7 @@ app.get("/customer/:id", (req, res) => {
    app.get("/customer/order_list/:id", (req, res) => {
   
     console.log(req.params.id);
-    var user = Number(req.params.id);
+    var user = String(req.params.id);
     console.log(user)
 
     Customers.find({id:user}, (err, items) => {

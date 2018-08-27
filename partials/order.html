@@ -1,24 +1,3 @@
-<!-- <div class="details" ng-model="customers" ng-repeat="order in customer[whichCustomer].orders">
-		 <span class="glyphicon glyphicon-user"> CustomerInformation</span> -->
-			<!-- <div style="margin-top: 30px;">
-					<!-- <a  class="white"><img style="height:200px;width:200px;float:left;" data-ng-src="public/img/{{customer[whichCustomer].gender | lowercase}}.png"  /></a> 
-				 <p style="font-size: 20px;"> {{order.o_name}}</p>		
-					 <div class="col-sm-offset-3">
-							<p style="font-size: 20px;"> {{customer[whichCustomer].name  }}</p>
-							<p style="font-size: 20px;">{{customer[whichCustomer].city}}, {{customer[whichCustomer].state}}</p>
-							<a href="" style="font-size: 20px;" class="btn-link">
-                                    {{ customer[whichCustomer].orderCount }}
-                                    <span data-ng-pluralize count="customer[whichCustomer].orderCount"
-                                          when="{'1': 'Order','other': 'Orders'}">
-                                    </span>
-								</a>
-								
-								
-
-					</div>				 
-			</div>
-</div>  -->
-
 <table class="table table-hover table-striped table-condensed table-bordered ordersTable">
 		<thead>
 			<tr>
@@ -29,12 +8,12 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr data-ng-hide=" customer[whichCustomer].orders.length > 0" class="error">
+			<tr data-ng-hide=" result.orders.length > 0" class="error">
 				<td colspan="5">
 					<div class="text-center"><strong>No orders found</strong></div>
 				</td>
 			</tr>
-			<tr ng-repeat="order in customer[whichCustomer].orders" class="repeat-animation">
+			<tr ng-repeat="order in result.orders" class="repeat-animation">
 				<td>
 					{{ order.o_name }}
 				</td>
