@@ -1,28 +1,28 @@
-<div class="container">
     <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">Login</div>
             <div class="panel-body">
-                <form>
+                <form name="AddCustomer" ng-submit="register()" >
+                    <div class="form-group">
+                        <label>Id</label>
+                        <input type="text" class="form-control" ng-model="customer.id" />
+                    </div>
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" ng-model="name">
+                        <input type="text" class="form-control" ng-model="customer.name" />
                     </div>
                     <div class="form-group">
                         <label>City</label>
-                        <input type="text" class="form-control" ng-model="city">
+                        <input type="text" class="form-control" ng-model="customer.city" />
                     </div>
                     <div class="form-group">
                         <label>State</label>
-                        <input type="text" class="form-control" ng-model="state">
+                        <input type="text" class="form-control" ng-model="customer.state" />
                     </div>
                     <div class="form-group">
                         <label>Gender</label>
-                        <input type="text" class="form-control" ng-model="gender">
+                        <input type="text" class="form-control" ng-model="customer.gender" />
                     </div>
-                    <button type="submit" class="btn btn-default" ng-submit="register()">Submit</button>
+                    <button  class="btn btn-default" >Submit</button>
                 </form>
             </div>
         </div>
-    </div>
-</div>
+    

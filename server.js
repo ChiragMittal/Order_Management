@@ -15,22 +15,22 @@ var Customers = mongoose.model('Customers',{
     city : String ,
     state : String ,
     gender : String ,
-    orderCount : Number ,
-    coords : {
-        latitude : Number,
-		longitude : Number
-    } ,
-    window : {
-		title : String
-    },
-    orders :[
-        {
-            o_id : Number ,
-            o_name : String ,
-            quantity : Number ,
-            price : Number 
-        }
-    ]
+    // orderCount : Number ,
+    // coords : {
+    //     latitude : Number,
+	// 	longitude : Number
+    // } ,
+    // window : {
+	// 	title : String
+    // },
+    // orders :[
+    //     {
+    //         o_id : Number ,
+    //         o_name : String ,
+    //         quantity : Number ,
+    //         price : Number 
+    //     }
+    // ]
 });
 
 app.use(function(req,res,next){
@@ -60,27 +60,27 @@ mongoose.connect("mongodb://localhost:27017/customers",(err,db) => {
     }
 });
 
-// app.post('http://localhost:4000/new_info',(req,res,next)=>{
+app.post('/new_info',(req,res)=>{
 
-// var user = new Customers();
-//         user.id = shortid.generate('1234567890');
-//         user.name = req.body.name;
-//         user.city = req.body.city;
-//         user.state = req.body.state;
-//         user.gender = req.body.gender;
+var user = new Customers(req.body);
+        // user.id = req.body.id;
+        // user.name = req.body.name;
+        // user.city = req.body.city;
+        // user.state = req.body.state;
+        // user.gender = req.body.gender;
 
-//         console.log(user.name)
+        console.log("Hello fucker")
 
-//         user.save((err, doc) => {
-//             if (!err)
-//                 res.status(200).send(doc);
-//             else {
-//                 res.status(500).send(err)
-//             }
+        // user.save((err, doc) => {
+        //     if (!err)
+        //         res.status(200).send(doc);
+        //     else {
+        //         res.status(500).send(err)
+        //     }
 
-// })
+        // })
 
-// });
+});
 
 app.get("/",(req,res) =>{
     
