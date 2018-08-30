@@ -31,9 +31,9 @@ app.config( function($routeProvider) {
 
 //     addCustomerToDb : function(customer){
 		
-//       $http.post('localhost:4000/new_info', customer).then(function (response) {
+//      return $http.post('localhost:4000/new_info', customer).then(function (response) {
 //               //alert(JSON.stringify(data))
-//               $scope.customer = response ; 
+//               return response.customer;
 //               }
 //           );
 
@@ -50,21 +50,22 @@ app.config( function($routeProvider) {
 // });
 
 // app.controller("new_info", 
-// 	 function($scope, $routeParams,$http)
+// 	 function($scope, $routeParams,$http,CustomerService)
 // 		{    
+//       $scope.customer = {};
 // 			$scope.register = function () {
       
-// 				// CustomerService.addCustomerToDb($scope.customer).then(function(response){
-// 				// 	console.log(response.$scope.customer);
+// 				CustomerService.addCustomerToDb($scope.customer).then(function(response){
+// 					console.log(response);
 
-//         // })
+//         })
         
-//         $http.post('localhost:4000/new_info', customer).then(function (response) {
-//                         //alert(JSON.stringify(data))
-//                         $scope.customer = response ; 
-//                         console.log($scope.customer)
-//                         }
-//                     );
+//         // $http.post('localhost:4000/new_info', customer).then(function (response) {
+//         //                 //alert(JSON.stringify(data))
+//         //                 // $scope.customer = response ; 
+//         //                 console.log(response)
+//         //                 }
+//         //             );
 
 //     }
 //   }

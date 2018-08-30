@@ -153,30 +153,37 @@ customer.controller("order",
 customer.controller("new_info", 
 	 function($scope, $routeParams,$http)
 		{    
-			$scope.customer = {};
+			$scope.customer ={};
+			
 			$scope.register = function () {
-      
+				// console.log($scope.customer)
 				// CustomerService.addCustomerToDb($scope.customer).then(function(response){
 				// 	console.log(response.$scope.customer);
 
         // })
         
-        // $http.post('localhost:4000/new_info', $scope.customer).then(function (response) {
-        //                 //alert(JSON.stringify(data))
-        //                 $scope.customer = response ; 
-        //                 console.log($scope.customer)
-        //                 }
-				//             );
+        $http.post('http://localhost:4000/new_info',$scope.customer).then(function (data) {
+                        //alert(JSON.stringify(data)) 
+												$scope.customer = data;
+												console.log("posted successfully")
+                        }
+				            ).catch(function(err){ console.log(err); });
+
+				// $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 				
-				$http({
-          method  : 'POST',
-          url     : 'localhost:4000/new_info',
-          data    : $scope.customer,
-          headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
-         })
-          .then(function(response) {
-            console.log(response.$scope.customer)
-          });
+				// $http({
+        //   method  : 'POST',
+        //   url     : 'localhost:4000/new_info',
+        //   data    : $.param({
+				// 		id : $scope.customer.id,
+				// 		name : $scope.customer.name,
+				// 		state : $scope.customer.state
+				// 	}),
+        //   headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
+        //  })
+        //   .success(function(data) {
+        //     console.log(data)
+        //   }).error(function(err){ console.log(err); });
 
     }
   }
