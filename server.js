@@ -80,7 +80,7 @@ mongoose.connect("mongodb://localhost:27017/customers",(err,db) => {
 
 app.post('/new_info',(req,res)=>{
     console.log(req.body);
-    res.json(req.body);
+    // res.json(req.body);
 
     // console.log(res.send(req.body))
 var user = new Customers(req.body);
