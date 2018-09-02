@@ -19,8 +19,8 @@
                             <div class="cardBodyContent">{{customer.city}}, {{customer.state}}</div>
                             <div>
                                 <a href="#/customer/order_list/{{customer.id}}" class="btn-link">
-                                    {{ customer.orderCount }}
-                                    <span data-ng-pluralize count="customer.orderCount"
+                                    {{ customer.orders.length }}
+                                    <span data-ng-pluralize count="customer.orders.length"
                                           when="{'1': 'Order','other': 'Orders'}">
                                     </span>
                                 </a>
@@ -51,8 +51,8 @@
                                     <td>{{customer.city}}, {{customer.state}}</td>
                                     <td>
                                         <a href="#/customer/order_list/{{customer.id}}" class="btn-link">
-                                            {{ customer.orderCount }}
-                                            <span data-ng-pluralize count="customer.orderCount"
+                                            {{ customer.orders.length }}
+                                            <span data-ng-pluralize count="customer.orders.length"
                                                   when="{'1': 'Order','other': 'Orders'}">
                                             </span>
                                         </a>

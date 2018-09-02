@@ -9,18 +9,6 @@ var assert = require("assert");
 
 // console.log(shortid.generate('1234567890'));
 
-// var Orders = mongoose.model('Orders',{
-//     orders:[
-//         {
-      
-//             o_name : String ,
-//             quantity : Number ,
-//             price : Number 
-//         }
-//     ]
-    
-// });
-
 var Customers = mongoose.model('Customers',{
     id: {type:String , required:true ,ref: 'Orders'} ,
     name: String ,
@@ -46,16 +34,10 @@ var Customers = mongoose.model('Customers',{
 
 
 
-// function getUserWithPosts(id){
-//     return Customers.findOne({ id: id })
-//       .populate('Orders').exec((err, orders) => {
-//         console.log("Populated User " + orders);
-//       })
-//   }
-
 app.use(function(req,res,next){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header ('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
     next();
 });
 
@@ -81,34 +63,61 @@ mongoose.connect("mongodb://localhost:27017/customers",(err,db) => {
     }
 });
 
-mongoose.connect("mongodb://localhost:27017/orders",(err,db) => {
-    if(!err){
-        console.log("hurray");
+app.put('/customer/:id',(req,res)=>{
+    console.log(req.body);
 
-    
-    }
+
+    var user = String(req.params.id);
+
+
+        Customers.update({id:user},{ $set: {  name : req.body.name ,  gender : req.body.gender , state : req.body.state , city : req.body.city}  }, (err, items) => {
+            if (err) res.status(500).send(err)
+        
+           
+                        res.status(200).send(items);
+                    
+            
+                })
 });
 
+
+
 app.post('/new_info',(req,res)=>{
-    console.log(req.body.name);
-    // res.json(req.body);
 
-    // console.log(res.send(req.body))
-var user = new Customers(req.body);
-        console.log(user)
+    Customers.findOne({
+        id : req.body.id
+    },function(err,existingUser){
 
-        user.save((err, doc) => {
-            if (!err)
-                res.status(200).send(doc);
-            else {
-                res.status(500).send(err)
-            }
+        if(existingUser){
+            return res.status(409).send({message : 'Id already exists'});
 
-        })
+        }
+          
+        else{
+            var user = new Customers(req.body);
+            console.log(user)
+
+            user.save((err, doc) => {
+                if (!err)
+                    res.status(200).send(doc);
+                else {
+                    res.status(500).send(err)
+                }
+
+            })
+        }
+
+        
+
+    })
+
+    
 
 });
 
 app.get("/",(req,res) =>{
+
+    
     
     Customers.find({}).exec(function(err,result){
         if (err) res.status(500).send(error)
@@ -137,14 +146,16 @@ app.get("/customer/:id", (req, res) => {
 
    app.post("/customer/order_list/:id",(req,res) => {
 
+    console.log(req.body.quantity);
+
     var new_order = new Customers({
 
    id: String(req.params.id),
     orders :[
             {
-                "o_name" : "Baseball  Bat",
-                "quantity" : 3,
-                "price" : 10
+                "o_name" : req.body.o_name ,
+                "quantity" : req.body.quantity,
+                "price" : req.body.price
             }
         
     ]
@@ -162,12 +173,6 @@ app.get("/customer/:id", (req, res) => {
                     
             
                 })
-       
-    
-      
-    
-
-
    });
 
    app.get("/customer/order_list/:id", (req, res) => {

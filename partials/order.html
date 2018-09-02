@@ -1,3 +1,41 @@
+<div class="container">
+		<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add</button>
+	  
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+		  <div class="modal-dialog">
+		  
+			<!-- Modal content-->
+			<div class="modal-content">
+			  <div class="modal-header">
+				
+			  </div>
+			  <div class="modal-body">
+					<form name="AddOrder"  >
+							<div class="form-group">
+								<label>Product Name</label>
+								<input type="text" class="form-control" ng-model="order.o_name" />
+							</div>
+							<div class="form-group">
+								<label>Product Quantity</label>
+								<input type="text" class="form-control" ng-model="order.quantity" />
+							</div>
+							<div class="form-group">
+								<label>Product Price</label>
+								<input type="text" class="form-control" ng-model="order.price" />
+							</div>
+							<button  class="btn btn-default" ng-click="add()">Add</button>
+						</form>
+			  </div>
+			</div>
+			
+		  </div>
+		</div>
+		
+	  </div>
+	  
+	  
+
 <table class="table table-hover table-striped table-condensed table-bordered ordersTable">
 		<thead>
 			<tr>

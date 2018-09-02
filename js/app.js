@@ -20,53 +20,12 @@ app.config( function($routeProvider) {
     templateUrl: 'partials/new.html',
     controller: 'new_info'
   }).
+  when('/customer/edit_info/:id', {
+    templateUrl: 'partials/edit.html',
+    controller: 'edit_info'
+  }).
   otherwise({
     redirectTo: '/'
   });
 });
 
-// app.factory('CustomerService',function($http){
-
-// 	return {
-
-//     addCustomerToDb : function(customer){
-		
-//      return $http.post('localhost:4000/new_info', customer).then(function (response) {
-//               //alert(JSON.stringify(data))
-//               return response.customer;
-//               }
-//           );
-
-//     //   return $http({
-//     //     method:"POST",
-//     //     url: "localhost:4000/new_info",
-//     //     customer:customer
-//     // });
-  
-//     }
-
-//   }	
-
-// });
-
-// app.controller("new_info", 
-// 	 function($scope, $routeParams,$http,CustomerService)
-// 		{    
-//       $scope.customer = {};
-// 			$scope.register = function () {
-      
-// 				CustomerService.addCustomerToDb($scope.customer).then(function(response){
-// 					console.log(response);
-
-//         })
-        
-//         // $http.post('localhost:4000/new_info', customer).then(function (response) {
-//         //                 //alert(JSON.stringify(data))
-//         //                 // $scope.customer = response ; 
-//         //                 console.log(response)
-//         //                 }
-//         //             );
-
-//     }
-//   }
-// );

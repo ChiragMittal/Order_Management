@@ -2,14 +2,14 @@
 <div class="details" ng-model="customers">
 		<span class="glyphicon glyphicon-user"> CustomerInformation</span>
 			<div style="margin-top: 30px;">
-					<a  class="white"><img style="height:200px;width:200px;float:left;" data-ng-src="public/img/{{customer.gender | lowercase}}.png"  /></a>
+					<a  class="white"><img style="height:200px;width:200px;float:left;" data-ng-src="../public/img/{{result.gender | lowercase}}.png"  /></a>
 				 <!-- <p style="font-size: 20px;"> {{customer[whichCustomer].name}}</p>		 -->
 					<div class="col-sm-offset-3">
 							<p style="font-size: 20px;"> {{result.name}}</p>
 							<p style="font-size: 20px;">{{result.city}}, {{result.state}}</p>
 							<a href="#/customer/order_list/{{result.id}}" style="font-size: 20px;" class="btn-link">
-                                    {{ result.orderCount }}
-                                    <span data-ng-pluralize count="result.orderCount"
+                                    {{ result.orders.length }}
+                                    <span data-ng-pluralize count="result.orders.length"
                                           when="{'1': 'Order','other': 'Orders'}">
                                     </span>
 								</a>
@@ -18,4 +18,8 @@
 
 					</div>				
 			</div>
+</div>
+
+<div>
+	<a href="#/customer/edit_info/{{result.id}}">Edit</a>
 </div>

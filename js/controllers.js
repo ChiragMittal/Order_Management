@@ -130,22 +130,23 @@ customer.controller("order",
 
 			}); 
 
-			// $http.get('js/data.json').success (function(data){
-			// 	$scope.customer = data;
-			// 	$scope.whichCustomer = $routeParams.id;
-			// 	$scope.result = $scope.customer.find( user => user.id ===  $scope.whichCustomer);
-			// 	console.log($scope.whichCustomer)
-			// 	 $scope.total = $scope.result.orders;
+	
 
+			// var xhr = createCORSRequest('POST', 'http://localhost:4000/customer/order_list/'+$routeParams.id);
+			// xhr.send();
 
-			// 	$scope.sum = $scope.total.reduce(function(prevVal, elem) {
-			// 		return prevVal + (elem.price*elem.quantity);
-			// }, 0);
+			$scope.order={};
+			
 
-			// console.log($scope.sum);
+			$scope.add = function () {
+				console.log($scope.order)
+				$http.post('http://localhost:4000/customer/order_list/'+$routeParams.id,$scope.order).then(function(data){
 
-				 
-			// });
+					$scope.order = data;
+					console.log("posted successfully")
+
+				}).catch(function(err){ console.log(err); });
+			}			
 
 		}
 );
@@ -155,13 +156,7 @@ customer.controller("new_info",
 		{    
 			$scope.customer ={};
 			
-			$scope.register = function () {
-				// console.log($scope.customer)
-				// CustomerService.addCustomerToDb($scope.customer).then(function(response){
-				// 	console.log(response.$scope.customer);
-
-        // })
-        
+			$scope.register = function () {        
         $http.post('http://localhost:4000/new_info',$scope.customer).then(function (data) {
                         //alert(JSON.stringify(data)) 
 												$scope.customer = data;
@@ -169,23 +164,42 @@ customer.controller("new_info",
                         }
 				            ).catch(function(err){ console.log(err); });
 
-				// $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-				
-				// $http({
-        //   method  : 'POST',
-        //   url     : 'localhost:4000/new_info',
-        //   data    : $.param({
-				// 		id : $scope.customer.id,
-				// 		name : $scope.customer.name,
-				// 		state : $scope.customer.state
-				// 	}),
-        //   headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
-        //  })
-        //   .success(function(data) {
-        //     console.log(data)
-        //   }).error(function(err){ console.log(err); });
-
+			
     }
+  }
+);
+
+customer.controller("edit_info", 
+	 function($scope, $routeParams,$http)
+		{    
+			$http.get('http://localhost:4000/customer/'+$routeParams.id).then (function(data){
+				$scope.whichCustomer = $routeParams.id;
+				$scope.customer = data;
+
+				 $scope.result = ($scope.customer.data).find( user => user.id ===  $scope.whichCustomer);
+
+				
+				console.log($scope.result)
+
+			}).catch(function(err){
+					console.log(err);
+			});
+			
+			// console.log($scope.result);
+			$scope.result = {}; 
+
+			$scope.edit = function () {       
+				console.log($scope.result);
+        $http.put('http://localhost:4000/customer/'+$routeParams.id,$scope.result).then(function (data) {
+                        //alert(JSON.stringify(data)) 
+												$scope.result = data;
+												console.log("posted successfully")
+                        }
+				            ).catch(function(err){ console.log(err); });
+
+			
+    }
+			
   }
 );
 
