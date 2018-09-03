@@ -5,19 +5,17 @@ var customer = angular.module("customer", []);
 customer.controller("customer",
 	function($scope, $http,$timeout)
 		{    
-			// $http.get('js/data.json').success (function(data){
-			// 	$scope.customers = data;
-
-				 
-			// });
+			$scope.customers = {};
 
 		$http.get('http://localhost:4000/').success (function(data){
 					$scope.customers = data;
 					// $scope.whichCustomer = $routeParams.id;
 					// console.log($scope.whichCustomer)
 				$scope.totalItems = $scope.customers.length;
-					console.log($scope.customers)
+				
 				}); 
+
+		
 
 			$scope.cardView = true;
 		    $scope.listView = false;
@@ -71,7 +69,11 @@ customer.controller("customer",
       $scope.itemsPerPage = num;
       $scope.currentPage = 1;
 		}
+
+		
+
 		 }
+
 );
 
 customer.controller("single_customer", 
@@ -83,30 +85,22 @@ customer.controller("single_customer",
 
 				 $scope.result = ($scope.customer.data).find( user => user.id ===  $scope.whichCustomer);
 
-				
-				console.log($scope.result)
+				 $scope.remove = function(){
 
-			}).catch(function(err){
-					console.log(err);
-			}); 
+					$http.put('http://localhost:4000/customer/'+$routeParams.id, $scope.result).then(function(data){
 
-			// $http.get('js/data.json').success (function(data){
-			// 	$scope.customer = data;
-			// 	$scope.whichCustomer = $routeParams.id;
-			// 		 $scope.result = $scope.customer.find( user => user.id ===  $scope.whichCustomer);
+							$scope.result = data ;
+							console.log("delete successfull")
 
-			// 		console.log($scope.result) 
+					}).catch(function(err){ console.log(err); });
 
-				
+					
 
-			// 	console.log($scope.whichCustomer)
-				
+				 }
 
-				 
-			// });
+		})
+		});
 
-		}
-);
 
 customer.controller("order", 
 	 function($scope, $http, $routeParams)
@@ -200,6 +194,4 @@ customer.controller("edit_info",
 			
     }
 			
-  }
-);
-
+	});

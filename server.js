@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var MongoClient = require("mongodb").MongoClient;
 var mongoose = require("mongoose");
 var assert = require("assert");
+var location = require('location-href')
 
 // console.log(shortid.generate('1234567890'));
 
@@ -37,7 +38,7 @@ var Customers = mongoose.model('Customers',{
 app.use(function(req,res,next){
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header ('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    res.header ('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE');
     next();
 });
 
@@ -61,6 +62,28 @@ mongoose.connect("mongodb://localhost:27017/customers",(err,db) => {
 
     
     }
+});
+
+app.put('/customer/:id',(req,res) =>{
+    
+    var idRemove = String(req.params.id);
+    console.log(idRemove);
+    var user = new Customers(req.body);
+            // console.log(req.body)
+            // console.log(user)
+
+            user.remove({id :idRemove},(err, doc) => {
+                if (!err){
+                    res.status(200).send(doc);
+                    
+                }
+                    
+                else {
+                    res.status(500).send(err)
+                }
+
+            })
+
 });
 
 app.put('/customer/:id',(req,res)=>{
