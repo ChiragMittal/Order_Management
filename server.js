@@ -86,7 +86,7 @@ app.put('/customer/:id',(req,res) =>{
 
 });
 
-app.put('/customer/:id',(req,res)=>{
+app.put('/customer/edit_info/:id',(req,res)=>{
     console.log(req.body);
 
 
@@ -97,7 +97,9 @@ app.put('/customer/:id',(req,res)=>{
             if (err) res.status(500).send(err)
         
            
-                        res.status(200).send(items);
+            //res.status(200).send(items);
+            console.log(items);
+             res.redirect('/customer/'+req.body.id);
                     
             
                 })
