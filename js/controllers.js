@@ -186,8 +186,7 @@ customer.controller("edit_info",
 				console.log($scope.result);
         $http.put('http://localhost:4000/customer/edit_info/'+$routeParams.id,$scope.result).then(function (data) {
                         //alert(JSON.stringify(data)) 
-												 $scope.result = data;
-												// console.log($scope.result)
+												$scope.result = data;
 												console.log("posted successfully")
                         }
 				            ).catch(function(err){ console.log(err); });
