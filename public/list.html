@@ -10,7 +10,7 @@
 
     <div class="card-view" ng-class="cardView ? 'show' : 'hide'">
 
-        <div class="cardContainer col-sm-6 col-md-4 col-lg-3" ng-repeat="customer in customers.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) track by $index | filter : searchText">
+        <div class="cardContainer col-sm-6 col-md-4 col-lg-3" ng-repeat="customer in customers.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))| filter : searchText">
                 <div class="cardHeader"><a href="#/customer/{{customer.id}}" class="white">{{customer.name}}</div>
                     <div class="pull-left cardBodyLeft">
                             <a href="#" class="white"><img data-ng-src="../public/img/{{customer.gender | lowercase}}.png" class="cardImage" /></a>
@@ -45,7 +45,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-ng-repeat="customer in customers.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) track by $index | filter : searchText"  class="repeat-animation">
+                                <tr data-ng-repeat="customer in customers.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))| filter : searchText"  class="repeat-animation">
                                     <td><a href="#"><img data-ng-src="../public/img/{{customer.gender | lowercase}}.png" class="cardImage" alt="Customer Image" /></a></td>
                                     <td><a href="#/customer/{{customer.id}}">{{customer.name}}</a></td>
                                     <td>{{customer.city}}, {{customer.state}}</td>
@@ -67,7 +67,7 @@
         
     </div>
 
-    <!-- <div id="map" class="map-view" ng-class="mapView ? 'show' : 'hide'">
+    <div id="map" class="map-view" ng-class="mapView ? 'show' : 'hide'">
             <ui-gmap-google-map 
     center='map.center' 
     zoom='map.zoom' aria-label="Google map">
@@ -80,7 +80,7 @@
             </ui-gmap-marker>
             
         </ui-gmap-google-map>
-    </div> -->
+    </div>
 
     <div class="footer">
 

@@ -7,8 +7,12 @@ var MongoClient = require("mongodb").MongoClient;
 var mongoose = require("mongoose");
 var assert = require("assert");
 var location = require('location-href')
+var fs = require('fs')
+var path=require('path')
+var helmet = require('helmet')
+var rateLimit = require('express-rate-limit')
 
-// console.log(shortid.generate('1234567890'));
+
 
 var Customers = mongoose.model('Customers',{
     id: {type:String , required:true ,ref: 'Orders'} ,
@@ -16,13 +20,6 @@ var Customers = mongoose.model('Customers',{
     city : String ,
     state : String ,
     gender : String ,
-    // coords : {
-    //     latitude : Number,
-	// 	longitude : Number
-    // } ,
-    // window : {
-	// 	title : String
-    // },
     orders :[
         {
             
@@ -34,6 +31,13 @@ var Customers = mongoose.model('Customers',{
 });
 
 
+app.use(helmet());
+
+const limit = new rateLimit({
+    windowMs : 15*60*1000,
+    max : 1000,
+    delayMs:0
+});
 
 app.use(function(req,res,next){
     res.header("Access-Control-Allow-Origin", "*");
@@ -44,17 +48,15 @@ app.use(function(req,res,next){
 
 
 var port = process.env.PORT || 4000;
-
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
+// app.set('view options', { layout: true });
 app.use(morgan("dev"));
 // app.use(express.static("./"));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname + 'public')));
 
-// function getInfo(){
-//     Customers.find({}).exec(function(err,result){
-        
-//     })
-// }
 
 mongoose.connect("mongodb://localhost:27017/customers",(err,db) => {
     if(!err){
@@ -63,6 +65,13 @@ mongoose.connect("mongodb://localhost:27017/customers",(err,db) => {
     
     }
 });
+
+//var file = fs.readFile( __dirname + '/public/index.html');
+
+// app.get('*', function(req, res) {
+//     res.setHeader('Content-Type', 'text/html');
+//     res.sendFile( __dirname + '/public/index.html');
+// });
 
 app.put('/customer/:id',(req,res) =>{
     
@@ -143,14 +152,24 @@ app.post('/new_info',(req,res)=>{
 app.get("/",(req,res) =>{
 
     
+        Customers.find({}).exec(function(err,result){
+            if (err) res.status(500).send(error)
     
-    Customers.find({}).exec(function(err,result){
-        if (err) res.status(500).send(error)
 
-        res.json(result);
-    })
+    //         res.setHeader('Content-Type', 'text/html');
+    // res.sendFile( __dirname + '/public/index.html');
+            res.status(200).send(result);
+            //
+            // res.render('index',{});
+            // res.sendFile('index.html',{
+            //     root : __dirname + '/partials'
+            // })
+        })
+   
+    
+    
 
-
+    
 });
 
 app.get("/customer/:id", (req, res) => {

@@ -1,0 +1,129 @@
+[
+    {
+        "id":"freddy",
+        "name": "Fred Flintstone",
+        "city": "Bedrock",
+        "state": "Washingstone",
+        "gender": "Male",
+        "orderCount" : 4,
+        "coords": {
+          "latitude": "45.5200",
+          "longitude": "-122.6819"
+        },
+        "window": {
+          "title": "Portland, OR"
+        },
+        "orders" :[{
+          "o_id" : 1,
+          "o_name" : "Cricket Bat" ,
+          "quantity" : 2 ,
+          "price" : 10 
+        },
+        {
+          "o_id" : 2,
+          "o_name" : "Cricket Ball" ,
+          "quantity" : 2 ,
+          "price" : 10 
+        }
+      ]
+      },
+      {
+        "id":"johnny",
+        "name": "John Smith",
+        "city": "Norfolk",
+        "state": "Virginia",
+        "gender": "Male",
+        "orderCount" : 6 ,
+        "orders" :[{
+          "o_id" : 4,
+          "o_name" : "Baseball Bat" ,
+          "quantity" : 5 ,
+          "price" : 10 
+        },
+        {
+          "o_id" : 2,
+          "o_name" : "Baseball Ball" ,
+          "quantity" : 1 ,
+          "price" : 10 
+        }
+      ]
+      } ,
+      {
+        "id":"franky",
+        "name": "Frank Livingston",
+        "city": "Pittsburgh",
+        "state": "Pennsylvania",
+        "gender": "Male",
+        "orderCount" : 1
+      },
+      {
+        "id":"judy",
+        "name": "Judy Green",
+        "city": "Cincinatti",
+        "state": "Ohio",
+        "gender": "Female",
+        "orderCount" : 7
+      },
+      {
+        "id":"pat",
+        "name": "Pat Thomas",
+        "city": "New York",
+        "state": "New York",
+        "gender": "Male",
+        "orderCount" : 9 ,
+        "coords": {
+          "latitude": "40.7903",
+          "longitude": "-73.9597"
+        },
+        "window ": {
+          "title": "Manhattan New York, NY"
+        }
+      },
+      {
+        "id":"betty",
+        "name": "Betty Rubble",
+        "city": "Bedrock",
+        "state": "Washingstone",
+        "gender": "Female",
+        "orderCount" : 3 ,
+        "coords": {
+          "latitude": "41.7903",
+          "longitude": "-73.9597"
+        },
+        "window" : {
+          "title": "Manhattan New York, NY"
+        }
+      },
+      {
+        "id":"martha",
+        "name": "Martha Smith",
+        "city": "Norfolk",
+        "state": "Virginia",
+        "gender": "Female",
+        "orderCount" : 10 ,
+        "coords": {
+          "latitude": "42.7903",
+          "longitude": "-73.9597"
+        },
+        "window" : {
+          "title": "Manhattan New York, NY"
+        }
+      },
+      {
+        "id":"lizzy",
+        "name": "Liz Livingston",
+        "city": "Pittsburgh",
+        "state": "Pennsylvania",
+        "gender": "Female",
+        "orderCount" : 8
+      },
+      {
+        "id":"howy",
+        "name": "Howard McGovern",
+        "city": "Denver",
+        "state": "Colorado",
+        "gender": "Male",
+        "orderCount": 5
+      }
+    
+]
