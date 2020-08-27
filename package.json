@@ -28,7 +28,7 @@
     "express": "^4.16.3",
     "loadash": "^1.0.0",
     "location-href": "^1.0.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.17",
     "mongodb": "^2.2.33",
     "mongoose": "^5.2.9",
     "mongoose-sequence": "^4.0.1",
